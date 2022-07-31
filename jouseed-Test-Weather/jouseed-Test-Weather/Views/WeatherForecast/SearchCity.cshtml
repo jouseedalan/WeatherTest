@@ -1,5 +1,4 @@
-﻿
-@model jouseed_Test_Weather.Models.SearchCity
+﻿@model jouseed_Test_Weather.Models.SearchCity
 
 @{
     ViewData["Title"] = "SearchCity";
@@ -12,16 +11,16 @@
         <div class="container">
             <div class="form-group col-md-offset-3 col-md-5">
                 <h2 class="text-muted"><i>Search the forecast in a city</i></h2>
-                @*<label asp-for="CityName" style="font-family: Arial"></label>*@
                 <input asp-for="CityName" class="form-control" />
                 <span asp-validation-for="CityName" class="text-danger"></span>
+                @* If invalid city, show the error message*@
                 @if (ViewBag.ErrorMessageForCity != null)
                 {
-                   <p class="text-danger">
-                    @ViewBag.ErrorMessageForCity
-              </p> 
+                    <p class="text-danger">
+                        @ViewBag.ErrorMessageForCity
+                    </p>
                 }
-                
+
             </div>
         </div>
         <br />
