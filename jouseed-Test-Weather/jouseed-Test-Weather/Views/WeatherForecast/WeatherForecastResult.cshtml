@@ -1,0 +1,83 @@
+﻿
+@model jouseed_Test_Weather.ViewModels.WeatherResultViewModel
+@{
+    ViewData["Title"] = "WeatherForecastResult";
+}
+
+
+<div class="container" >
+
+    <form method="post">
+
+         <div class="card w-75">
+        
+  <div class="card-header">
+   Weather Forecast details of <font class="fw-bold"> @Model.location.name </font>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"><font class="fw-bold text-success">Current Weather </font>
+        <img src="@Model.current.weathercondition.icon"/>
+    </h5> 
+    
+    <p class="card-text">
+        <font class="fw-bold text-secondary">Date:</font> @DateTime.Now <br />
+       <font class="fw-bold text-secondary"> Region :</font> @Model.location.region 
+       <font class="fw-bold text-secondary"> Country :</font> @Model.location.country <br />
+       <font class="fw-bold text-secondary"> Current Temperature:</font>@Model.current.temp_c °C 
+       <font class="fw-bold text-secondary"> Feels Like:</font>@Model.current.feelslike_c°C        
+       <br />
+       <font class="fw-bold text-secondary"> Humidity:</font>@Model.current.humidity °C 
+       <font class="fw-bold text-secondary"> Wind Speed:</font>@Model.current.windspeed MPH 
+       <br />
+        <font class="fw-bold text-secondary">Current Weather Condition:</font> @Model.current.weathercondition.text <br />
+        
+    </p>    
+  </div>
+</div>
+
+<br />
+
+<div class="row">
+
+    <div class="card w-75">                   
+
+     <div class="card-body">
+    
+    <p class="card-text">
+      
+      
+       @foreach(Forecast weatherdet in @Model.forecasts)
+        {  
+         <div class="col align-self-start">                    
+       <font class="fw-bold text-success"> ForeCast Details of :@weatherdet.forecastday </font>
+       <img src="@weatherdet.ForeCondition.icon"/>
+       <br>
+
+       
+        <font class="fw-bold text-primary"> Max Temp: </font>  @weatherdet.maxtemp°C         
+        <font class="fw-bold text-secondary"> Min Temp : </font> @weatherdet.mintemp°C               
+        <font class="fw-bold text-primary"> Average Humidity : </font> @weatherdet.avgHumidity 
+        <font class="fw-bold text-secondary"> Wind Speed :</font> @weatherdet.maxwind_mph MPH
+        <br />
+       <font class="fw-bold text-primary"> Current Weather Condition: </font> @weatherdet.ForeCondition.text <br />
+        
+        <hr class="mt-6 mb-6"/>
+        </div>
+        
+             
+        }
+    </p>    
+  </div>
+  </div> 
+  </div>
+  <div class="container">
+            <div class="form-group col-md-offset-3 col-md-5">             
+            <br />
+            <a class="btn btn-success" asp-area="" asp-controller="WeatherForecast" asp-action="SearchCity">Back</a>
+            
+            </div>
+        </div>
+
+
+
+ </form>
